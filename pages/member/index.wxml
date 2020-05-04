@@ -1,0 +1,27 @@
+
+<home wx:if="{{PageCur=='home'}}"></home>
+<me wx:if="{{PageCur=='me'}}"></me>
+<shop wx:if="{{PageCur=='shop'}}"></shop>
+
+<view class="cu-bar tabbar bg-white shadow foot">
+  <view class="action" bindtap="NavChange" data-cur="home">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/tabbar/basics{{PageCur=='home'?'_cur':''}}.png"></image>
+    </view>
+    <view class="{{PageCur=='home'?'text-green':'text-gray'}}">首领</view>
+  </view>
+
+  <view class="action" bindtap="NavChange" data-cur="shop">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/tabbar/component{{PageCur=='shop'?'_cur':''}}.png"></image>
+    </view>
+    <view class="{{PageCur=='shop'?'text-green':'text-gray'}}">小店</view>
+  </view>
+  
+  <view class="action" bindtap="NavChange" data-cur="me">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/tabbar/component{{PageCur=='me'?'_cur':''}}.png"></image>
+    </view>
+    <view class="{{PageCur=='me'?'text-green':'text-gray'}}">会员</view>
+  </view>
+</view>

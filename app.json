@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/welcome/welcome",
+    "pages/member/index",
+    "pages/member/home/index",
+    "pages/member/home/news",
+    "pages/member/me/index",
+    "pages/member/me/bind",
+    "pages/member/me/detail",
+    "pages/member/me/record",
+    "pages/member/shop/index",
+
+    "pages/business/member/add",
+    "pages/business/member/index",
+    "pages/business/member/detail",
+    "pages/business/member/list",
+    "pages/business/news/index",
+    "pages/business/statistics/index",
+    "pages/business/index",
+
+    "pages/about/log/log",
+    "pages/about/home/home"
+
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "首领造型",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "sitemapLocation": "sitemap.json"
+}

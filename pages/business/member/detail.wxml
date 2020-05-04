@@ -1,0 +1,84 @@
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">会员信息</view>
+</cu-custom>
+<form>
+	<view class="cu-form-group margin-top">
+		<view class="title">头像</view>
+		<view class="cu-avatar radius bg-gray" style="background-image:url({{member.avatar?member.avatar:'/images/logo.png'}});"></view>
+	</view>
+    <view class="cu-form-group margin-top">
+		<view class="title">编号</view>
+		<input placeholder="编号" value="{{member.no}}" data-key="no" bindinput="modelBlur" style="text-align:right"></input>
+	</view>
+	<view class="cu-form-group margin-top">
+		<view class="title">姓名</view>
+		<input placeholder="姓名" style="text-align:right" data-key="name" bindinput="modelBlur" value="{{member.name}}"></input>
+	</view>
+    	<view class="cu-form-group">
+        <view class="title">性别</view>
+		<switch class="switch-sex" wx:if="{{member.gender==0}}" checked data-key="gender" bindchange="modelBlur"></switch>
+        <switch class="switch-sex" wx:else="{{member.gender==1}}" data-key="gender" bindchange="modelBlur"></switch>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">手机号码</view>
+		<input placeholder="输入框带标签" value="{{member.phone}}" data-key="phone" bindinput="modelBlur"></input>
+		<view class="cu-capsule radius">
+			<view class="cu-tag bg-blue">
+				+86
+			</view>
+			<view class="cu-tag line-blue">
+				中国大陆
+			</view>
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">剩余次数</view>
+		<input placeholder="剩余次数" style="text-align:right" data-key="leftnum" bindinput="modelBlur" value="{{member.leftnum}}"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">创建时间</view>
+		<picker mode="member.createdAt" value="{{member.createdAt}}">
+			<view class="picker">
+				{{member.createdAt}}
+			</view>
+		</picker>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">更新时间</view>
+		<picker mode="member.updatedAt" value="{{member.updatedAt}}">
+			<view class="picker">
+				{{member.updatedAt}}
+			</view>
+		</picker>
+	</view>
+	<!-- <view class="cu-form-group">
+		<view class="title">地址选择</view>
+		<picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+			<view class="picker">
+				{{region[0]}}，{{region[1]}}，{{region[2]}}
+			</view>
+		</picker>
+	</view> -->
+
+	<view class="padding flex flex-direction">
+		<button class="cu-btn bg-red margin-tb-sm lg" bindtap="updateMember">更新</button>
+	</view>
+
+</form>
+
+<view class="cu-form-group margin-top">
+<view class="cu-timeline">
+  <view class="title">消费记录</view>
+  <view class="cu-item" wx:for="{{records}}" wx:key="id" wx:for-item="record">
+    <view class="content">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-cyan" wx:if="{{record.type==0}}">普通消费</view>
+        <view class="cu-tag bg-cyan" wx:else="{{record.type==1}}">会员卡消费</view>
+        <view class="cu-tag line-cyan">{{record.createdAt}}</view>
+      </view>
+      <view class="margin-top">{{record.content}}</view>
+    </view>
+  </view>
+</view>
+</view>

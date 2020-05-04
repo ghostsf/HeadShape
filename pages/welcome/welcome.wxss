@@ -1,0 +1,45 @@
+/**app.wxss**/
+page{
+  background: #ffffff;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 150rpx 0;
+  box-sizing: border-box;
+} 
+
+
+/**index.wxss**/
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-img {
+  width: 250px;
+  height: 250px;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.logo-title {
+  color: #353535;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo-motto{
+  margin-top: 15px;
+  color: #333;
+  font-size: 18px;
+}
+
+.go{
+  margin-top: 20px;
+}

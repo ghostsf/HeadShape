@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "home": "/pages/member/home/index",
+    "me": "/pages/member/me/index",
+    "news": "/pages/member/home/index",
+    "shop": "/pages/member/shop/index"
+  }
+}

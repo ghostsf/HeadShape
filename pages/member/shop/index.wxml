@@ -1,0 +1,9 @@
+  <view class="UCenter-bg">
+    <image src="/images/logo.png" class="png" mode="widthFix"></image>
+    <view class="text-xl">首领造型
+      <text class="text-df">小店</text>
+    </view>
+    <view class="margin-top-sm">
+      <text>敬请期待</text>
+    </view>
+  </view>

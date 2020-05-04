@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="logo">
+      <image bindtap="go" class="logo-image" src="/images/logo.png"></image>
+      <text class="logo-title">首领造型</text>
+      <text class="logo-motto" wx:if="{{userInfo.nickName}}" >{{motto}}，{{userInfo.nickName}}</text>
+      <text class="logo-motto" wx:if="{{!userInfo.nickName}}">{{motto}}</text>
+  </view>
+
+  <view class="container">
+        <view class="go">
+            <button bindtap="go" class="weui-btn" type="default" plain="true">改变从头开始</button>
+        </view>
+    </view>
+</view>

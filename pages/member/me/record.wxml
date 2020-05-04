@@ -1,0 +1,20 @@
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">消费记录</view>
+</cu-custom>
+
+<view class="cu-form-group margin-top">
+<view class="cu-timeline">
+  <view class="title">消费记录</view>
+  <view class="cu-item" wx:for="{{records}}" wx:key="id" wx:for-item="record">
+    <view class="content">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-cyan" wx:if="{{record.type==0}}">普通消费</view>
+        <view class="cu-tag bg-cyan" wx:else="{{record.type==1}}">会员卡消费</view>
+        <view class="cu-tag line-cyan">{{record.createdAt}}</view>
+      </view>
+      <view class="margin-top">{{record.content}}</view>
+    </view>
+  </view>
+</view>
+</view>

@@ -1,0 +1,30 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content"></view>
+</cu-custom>
+
+
+
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+	<view class='text-center margin-bottom text-lg  text-grey'>{{news.title}}</view>
+	<view class='text-content'>
+		<view class="margin-top-sm" wx:for="{{news.content}}" wx:key="index">{{item}}</view>
+	</view>
+
+	<view class="cu-list menu-avatar" style="margin-top:10px;border-top: 4rpx solid #eee;">
+		<view class="cu-item">
+			<view class="cu-avatar round lg" style="background-image:url(/images/logo.png);"></view>
+			<view class="content flex-sub">
+				<view class="text-grey">首领造型</view>
+				<view class="text-gray text-sm flex justify-between">
+					{{news.createdAt}}
+					<view class="text-gray text-sm">
+						<text class="cuIcon-attentionfill margin-lr-xs"></text> {{news.viewCount}}
+						<!-- <text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
+              <text class="cuIcon-messagefill margin-lr-xs"></text> 30 -->
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
