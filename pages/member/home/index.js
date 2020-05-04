@@ -38,7 +38,8 @@ Component({
         news: newsJson
       });
     });
-
+  },
+  ready(){
     wx.hideLoading()
   },
   methods: {

@@ -7,6 +7,13 @@ Page({
       PageCur: e.currentTarget.dataset.cur
     })
   },
+  onLoad: function (options) {
+    if(options.PageCur){
+      this.setData({
+        PageCur: options.PageCur
+      })
+    }
+  }
   // onShareAppMessage() {
   //   return {
   //     title: 'ColorUI-高颜值的小程序UI组件库',

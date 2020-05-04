@@ -1,4 +1,5 @@
 <scroll-view scroll-y class="scrollPage">
+<view class="cu-tabbar-height"></view>
 
 	<swiper class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
 		<swiper-item wx:for="{{poster}}" wx:key="id" class="{{cardCur==index?'cur':''}}">
@@ -29,7 +30,7 @@
 			</view>
 			<view class="cu-list menu-avatar">
 				<view class="cu-item">
-					<view class="cu-avatar round lg" style="background-image:url(/images/logo.png);"></view>
+					<view class="cu-avatar round lg" style="background-image:url('https://cdn.ghostsf.com/headshape-logo.png');"></view>
 					<view class="content flex-sub">
 						<view class="text-grey">首领造型</view>
 						<view class="text-gray text-sm flex justify-between">

@@ -21,7 +21,7 @@
 
 			<view class="cu-item" wx:for="{{members}}" wx:key="no" wx:for-item="member">
 
-				<navigator open-type="navigate" url="/pages/business/member/detail?no={{member.no}}" class="cu-avatar round lg" style="background-image:url({{member.avatar?member.avatar:'/images/logo.png'}});">
+				<navigator open-type="navigate" url="/pages/business/member/detail?no={{member.no}}" class="cu-avatar round lg" style="background-image:url({{member.avatar?member.avatar:'https://cdn.ghostsf.com/headshape-logo.png'}});">
 				</navigator>
 
 				<navigator open-type="navigate" url="/pages/business/member/detail?no={{member.no}}" class="content">

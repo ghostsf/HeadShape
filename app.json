@@ -8,18 +8,14 @@
     "pages/member/me/bind",
     "pages/member/me/detail",
     "pages/member/me/record",
-    "pages/member/shop/index",
 
     "pages/business/member/add",
     "pages/business/member/index",
     "pages/business/member/detail",
     "pages/business/member/list",
-    "pages/business/news/index",
-    "pages/business/statistics/index",
     "pages/business/index",
 
-    "pages/about/log/log",
-    "pages/about/home/home"
+    "pages/about/log/log"
 
   ],
   "window": {

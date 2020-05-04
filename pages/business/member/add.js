@@ -1,6 +1,7 @@
 const app = getApp();
 const AV = app.require('libs/av-weapp-min.js');
 const util = app.require('utils/util.js')
+const regeneratorRuntime = app.require('utils/runtime')
 
 Page({
   data: {

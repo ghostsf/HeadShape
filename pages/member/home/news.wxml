@@ -13,7 +13,7 @@
 
 	<view class="cu-list menu-avatar" style="margin-top:10px;border-top: 4rpx solid #eee;">
 		<view class="cu-item">
-			<view class="cu-avatar round lg" style="background-image:url(/images/logo.png);"></view>
+			<view class="cu-avatar round lg" style="background-image:url('https://cdn.ghostsf.com/headshape-logo.png');"></view>
 			<view class="content flex-sub">
 				<view class="text-grey">首领造型</view>
 				<view class="text-gray text-sm flex justify-between">

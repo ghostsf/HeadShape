@@ -1,6 +1,7 @@
 const app = getApp();
 const AV = app.require('libs/av-weapp-min.js');
 const util = app.require('utils/util.js');
+const regeneratorRuntime = app.require('utils/runtime')
 
 Page({
 
@@ -12,29 +13,42 @@ Page({
     no: ''
   },
 
-  bind: async function () {
+  showTopTips: function (errorMsg) {
+    const that = this;
+    this.setData({
+      errorMsg: errorMsg,
+      showTopTips: 'show'
+    });
+    setTimeout(function () {
+      that.setData({
+        errorMsg: '',
+        showTopTips: ''
+      });
+    }, 3000);
+  },
+
+  hideModal: function () {
+    this.setData({
+      errorMsg: '',
+      showTopTips: ''
+    });
+  },
+
+  async bind() {
     //debugger;
     var name = this.data.name && this.data.name.trim();
     var phone = this.data.phone && this.data.phone.trim();
 
     if (!name) {
-      wx.showToast({
-        title: '姓名还没有填写呢'
-      })
-
+      this.showTopTips('请填写姓名');
       return;
     }
     if (!phone) {
-      wx.showToast({
-        title: '手机号码还没有填写呢'
-      })
-
+      this.showTopTips('请填写手机号码');
       return;
     }
     if (!util.isPhoneAvailable(phone)) {
-      wx.showToast({
-        title: '手机号码格式不正确'
-      })
+      this.showTopTips('手机号码格式不正确');
       return;
     }
 
@@ -52,9 +66,10 @@ Page({
       wx.showToast({
         title: '保存成功',
         icon: 'success',
+        duration: 2000,
         success: function () {
-          wx.navigateTo({
-            url: './index'
+          wx.redirectTo({
+            url: '../index?PageCur=me'
           })
         }
       })
@@ -81,9 +96,10 @@ Page({
       wx.showToast({
         title: '保存成功',
         icon: 'success',
+        duration: 2000,
         success: function () {
-          wx.navigateTo({
-            url: './index'
+          wx.redirectTo({
+            url: '../index?PageCur=me'
           })
         }
       })

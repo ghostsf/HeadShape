@@ -18,7 +18,9 @@ Component({
       title: '数据加载中',
       mask: true,
     })
-    this.login().then(this.init());
+    this.init();
+  },
+  ready(){
     wx.hideLoading()
   },
   methods: {
@@ -63,10 +65,10 @@ Component({
         }
       });
     },
-    login: function () {
-      return AV.Promise.resolve(AV.User.current()).then(user =>
-        user ? user : AV.User.loginWithWeapp());
-    },
+    // login: function () {
+    //   return AV.Promise.resolve(AV.User.current()).then(user =>
+    //     user ? user : AV.User.loginWithWeapp());
+    // },
     showModal(e) {
       this.setData({
         modalName: e.currentTarget.dataset.target

@@ -34,7 +34,7 @@ Page({
   onShareAppMessage() {
     return {
       title: '首领造型',
-      imageUrl: '/images/logo.png',
+      imageUrl: 'https://cdn.ghostsf.com/headshape-logo.png',
       path: '/pages/member/index'
     }
   },
