@@ -29,7 +29,9 @@ Page({
    */
   autoJump:function(){
     const that = this;
+    // todo 这边第一次登陆 没有获取到user的bug
     const user = AV.User.current();
+    console.log(user);
     //判断该用户是否激活绑定账号);
     var openid = user.attributes.authData.lc_weapp.openid;
     const query = new AV.Query('Member').equalTo('openid', openid);

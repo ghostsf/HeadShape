@@ -20,8 +20,8 @@ Component({
     },
     showQrcode() {
       wx.previewImage({
-        urls: ['http://cdn.ghostsf.com/wechatpay.png'],
-        current: 'http://cdn.ghostsf.com/wechatpay.png' // 当前显示图片的http链接      
+        urls: ['https://cdn.ghostsf.com/me-wx.jpeg'],
+        current: 'https://cdn.ghostsf.com/me-wx.jpeg' // 当前显示图片的http链接      
       })
     },
   }

@@ -15,7 +15,11 @@ Page({
     recordContent: '',
     recordMemberNo: null
   },
-
+  pageBack() {
+    wx.reLaunch({
+      url: 'pages/business/member/index'
+    })
+  },
   showTopTips: function (errorMsg) {
     const that = this;
     this.setData({
@@ -69,13 +73,13 @@ Page({
 
     var query = new AV.Query('Member');
     if (this.data.searchWord) {
-      const queryNo = new AV.Query(Member);
+      const queryNo = new AV.Query('Member');
       queryNo.equalTo('no', Number(this.data.searchWord));
 
-      const queryName = new AV.Query(Member);
+      const queryName = new AV.Query('Member');
       queryName.contains('name', this.data.searchWord);
 
-      const queryPhone = new AV.Query(Member);
+      const queryPhone = new AV.Query('Member');
       queryPhone.contains('phone', this.data.searchWord);
 
       query = AV.Query.or(queryNo, queryName, queryPhone);
@@ -107,7 +111,7 @@ Page({
   },
 
   addRecordDeal: function () {
-    new AV.Query(Member).equalTo('no', this.data.recordMemberNo).first().then((member) => {
+    new AV.Query('Member').equalTo('no', this.data.recordMemberNo).first().then((member) => {
       let leftnum = Number(member.get('leftnum'));
       if (leftnum < 1) {
         wx.showToast({
@@ -148,10 +152,6 @@ Page({
         });
 
         // 通知用户被扣一次
-        
-
-        this.addRecordClose();
-
         wx.showToast({
           title: '保存成功',
           icon: 'success',
@@ -161,6 +161,8 @@ Page({
             })
           }
         })
+
+        this.addRecordClose();
 
       }, (error) => {
         // 异常处理

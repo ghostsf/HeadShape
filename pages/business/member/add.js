@@ -12,7 +12,11 @@ Page({
     leftnum: 0,
     no: null
   },
-
+  pageBack() {
+    wx.reLaunch({
+      url: 'pages/business/member/index'
+    })
+  },
   showTopTips: function (errorMsg) {
     const that = this;
     this.setData({

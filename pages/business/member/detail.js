@@ -9,6 +9,11 @@ Page({
     member: {},
     records: []
   },
+  pageBack() {
+    wx.reLaunch({
+      url: 'pages/business/member/list'
+    })
+  },
   onLoad: function (options) {
     const that = this;
     var query = new AV.Query('Member');
