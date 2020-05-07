@@ -20,7 +20,7 @@ Component({
     })
     const that = this;
     const query = new AV.Query('News');
-    query.descending('createdAt');
+    query.ascending('id');
     query.find().then((news) => {
       var newsDataJson = util.jsonify(news);
       newsDataJson.map(function (news) {

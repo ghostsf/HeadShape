@@ -1,8 +1,8 @@
 <scroll-view scroll-y class="scrollPage">
 	<view class="UCenter-bg">
-		<open-data type="userAvatarUrl" class="png"></open-data>
+		<open-data type="userAvatarUrl" style="width:64px;height:64px;"></open-data>
 		<open-data wx:if="{{!member||!member.name}}" type="userNickName" class="text-xl"></open-data>
-    <view wx:if="{{member.name}}" class="text-xl">{{member.name}}</view>
+		<view wx:if="{{member.name}}" class="text-xl">{{member.name}}</view>
 
 		<!-- <image src="/images/logo.png" class="png" mode="widthFix"></image>
 		<view class="text-xl">未登录
@@ -14,10 +14,11 @@
       <view wx:else>请升级微信版本</view> -->
 
 			<button wx:if="{{!member}}" class="cu-btn round line-white" bindtap="bindShow">绑定激活</button>
-      <button wx:else="{{member.no}}" class="cu-btn round line-white">会员编号：{{member.no}}</button>
+			<button wx:else="{{member.no}}" class="cu-btn round line-white">会员编号：{{member.no}}</button>
 
 		</view>
 
+		<image src="/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
 	</view>
 
 	<view class="padding flex text-center text-grey bg-white shadow-warp" wx:if="{{member}}">
@@ -36,13 +37,13 @@
 	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
 		<view class="cu-item arrow" wx:if="{{member}}">
 			<navigator class="content" url="/pages/member/me/detail?no={{member.no}}" hover-class="none">
-				<text class="cuIcon-github text-grey"></text>
+				<text class="cuIcon-myfill text-blue"></text>
 				<text class="text-grey">会员详情</text>
 			</navigator>
 		</view>
 		<view class="cu-item arrow" wx:if="{{member}}">
 			<navigator class="content" url="/pages/member/me/record?no={{member.no}}" hover-class="none">
-				<image src="/images/logo.png" class="png" mode="aspectFit"></image>
+				<text class="cuIcon-list text-green"></text>
 				<text class="text-grey">消费记录</text>
 			</navigator>
 		</view>

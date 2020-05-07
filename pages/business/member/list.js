@@ -15,9 +15,10 @@ Page({
     recordContent: '',
     recordMemberNo: null
   },
-  pageBack() {
+  BackPage() {
+    console.log('BackPage');
     wx.reLaunch({
-      url: 'pages/business/member/index'
+      url: '../index?PageCur=members'
     })
   },
   showTopTips: function (errorMsg) {

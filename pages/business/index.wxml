@@ -10,7 +10,8 @@
     </view>
     <view class="{{PageCur=='members'?'text-green':'text-gray'}}">会员</view>
   </view>
-  <view class="action" bindtap="NavChange" data-cur="news">
+
+  <!-- <view class="action" bindtap="NavChange" data-cur="news">
     <view class='cuIcon-cu-image'>
       <image src="/images/tabbar/component{{PageCur=='news'?'_cur':''}}.png"></image>
     </view>
@@ -22,7 +23,7 @@
       <image src="/images/tabbar/plugin{{PageCur=='statistics'?'_cur':''}}.png"></image>
     </view>
     <view class="{{PageCur=='statistics'?'text-green':'text-gray'}}">统计</view>
-  </view>
+  </view> -->
 
   <view class="action" bindtap="NavChange" data-cur="about">
     <view class='cuIcon-cu-image'>

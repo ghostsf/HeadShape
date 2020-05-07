@@ -1,7 +1,14 @@
-<cu-custom bgImage="https://image.weilanwl.com/color2.0/plugin/sylb2244.jpg" isBack="{{true}}">
-	<view slot="backText">返回</view>
-	<view slot="content">会员列表</view>
-</cu-custom>
+<view class="cu-custom" style="height:{{CustomBar}}px">
+  <view class="cu-bar fixed  bg-gradual-green" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class="action" bindtap="BackPage">
+      <text class="cuIcon-back"></text>
+      返回
+    </view>
+    <view class="content" style="top:{{StatusBar}}px">
+      会员列表
+    </view>
+  </view>
+</view>
 
 <view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
 	<view class="search-form round">

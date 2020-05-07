@@ -1,12 +1,13 @@
 <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg">
-    <image src="/images/logo.png" class="png" mode="widthFix"></image>
-    <view class="text-xl">首领造型
+    <image src="/images/logo-lucency.png" class="png" mode="widthFix"></image>
+    <view class="text-xl text-black">首领造型
       <text class="text-df">v1.0</text>
     </view>
-    <view class="margin-top-sm">
+    <view class="margin-top-sm text-black">
       <text>By:ghostsf</text>
     </view>
+    <image src="/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
 
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">

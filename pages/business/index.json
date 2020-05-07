@@ -1,8 +1,6 @@
 {
   "usingComponents": {
     "members": "/pages/business/member/index",
-    "news": "/pages/business/news/index",
-    "statistics": "/pages/business/statistics/index",
     "about": "/pages/about/home/home"
   }
 }
