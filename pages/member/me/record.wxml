@@ -15,9 +15,9 @@
 					<view class="cu-tag line-cyan">{{record.createdAt}}</view>
 				</view>
 				<view class="margin-top">
-					<view wx:if="{{record.type==1}}" class="cu-tag bg-red">剩余次数：{{record.leftnum}}</view>
-					<view wx:elif="{{record.type==2}}" class="cu-tag bg-red">充值次数：{{record.rechargeNum}}</view>
-					<view wx:elif="{{record.type==0}}" class="cu-tag bg-red">消费金额：{{record.money}}</view>
+					<view wx:if="{{record.type==0}}" class="cu-tag bg-red">消费金额：{{record.money}}</view>
+					<view wx:elif="{{record.type==1}}" class="cu-tag bg-red">剩余次数：{{record.leftnum}}</view>
+					<view wx:else="{{record.type==2}}" class="cu-tag bg-red">充值次数：{{record.rechargeNum}}</view>
 					{{record.content}}
 				</view>
 			</view>
