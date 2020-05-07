@@ -1,20 +1,20 @@
 <scroll-view scroll-y class="scrollPage">
 	<view class="UCenter-bg">
 		<open-data type="userAvatarUrl" style="width:64px;height:64px;"></open-data>
-		<open-data wx:if="{{!member||!member.name}}" type="userNickName" class="text-xl"></open-data>
-		<view wx:if="{{member.name}}" class="text-xl">{{member.name}}</view>
+		<open-data wx:if="{{!member||!member.name}}" type="userNickName" class="text-xl text-black"></open-data>
+		<view wx:if="{{member.name}}" class="text-xl  text-black">{{member.name}}</view>
 
 		<!-- <image src="/images/logo.png" class="png" mode="widthFix"></image>
 		<view class="text-xl">未登录
 		</view> -->
 
-		<view class="margin-top-sm">
+		<view class="margin-top-sm text-black">
 			<!-- todo 后续完善 -->
 			<!-- <button wx:if="{{canIUse}}" class="cu-btn round line-white" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">绑定激活</button>
       <view wx:else>请升级微信版本</view> -->
 
-			<button wx:if="{{!member}}" class="cu-btn round line-white" bindtap="bindShow">绑定激活</button>
-			<button wx:else="{{member.no}}" class="cu-btn round line-white">会员编号：{{member.no}}</button>
+			<button wx:if="{{!member}}" class="cu-btn round line-black text-black" bindtap="bindShow">绑定激活</button>
+			<button wx:else="{{member.no}}" class="cu-btn round line-black text-black">会员编号：{{member.no}}</button>
 
 		</view>
 
