@@ -4,17 +4,23 @@
 </cu-custom>
 
 <view class="cu-form-group margin-top">
-<view class="cu-timeline">
-  <view class="title">消费记录</view>
-  <view class="cu-item" wx:for="{{records}}" wx:key="id" wx:for-item="record">
-    <view class="content">
-      <view class="cu-capsule radius">
-        <view class="cu-tag bg-cyan" wx:if="{{record.type==0}}">普通消费</view>
-        <view class="cu-tag bg-cyan" wx:else="{{record.type==1}}">会员卡消费</view>
-        <view class="cu-tag line-cyan">{{record.createdAt}}</view>
-      </view>
-      <view class="margin-top">{{record.content}}</view>
-    </view>
-  </view>
-</view>
+	<view class="cu-timeline">
+		<view class="title">消费记录</view>
+		<view class="cu-item" wx:for="{{records}}" wx:key="id" wx:for-item="record">
+			<view class="content">
+				<view class="cu-capsule radius">
+					<view class="cu-tag bg-cyan" wx:if="{{record.type==0}}">普通消费</view>
+					<view class="cu-tag bg-cyan" wx:elif="{{record.type==1}}">会员卡消费</view>
+					<view class="cu-tag bg-cyan" wx:else="{{record.type==2}}">会员卡充值</view>
+					<view class="cu-tag line-cyan">{{record.createdAt}}</view>
+				</view>
+				<view class="margin-top">
+					<view wx:if="{{record.type==1}}" class="cu-tag bg-red">剩余次数：{{record.leftnum}}</view>
+					<view wx:elif="{{record.type==2}}" class="cu-tag bg-red">充值次数：{{record.rechargeNum}}</view>
+					<view wx:elif="{{record.type==0}}" class="cu-tag bg-red">消费金额：{{record.money}}</view>
+					{{record.content}}
+				</view>
+			</view>
+		</view>
+	</view>
 </view>

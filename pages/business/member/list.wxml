@@ -1,13 +1,13 @@
 <view class="cu-custom" style="height:{{CustomBar}}px">
-  <view class="cu-bar fixed  bg-gradual-green" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-    <view class="action" bindtap="BackPage">
-      <text class="cuIcon-back"></text>
-      返回
-    </view>
-    <view class="content" style="top:{{StatusBar}}px">
-      会员列表
-    </view>
-  </view>
+	<view class="cu-bar fixed  bg-gradual-green" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+		<view class="action" bindtap="BackPage">
+			<text class="cuIcon-back"></text>
+			返回
+		</view>
+		<view class="content" style="top:{{StatusBar}}px">
+			会员列表
+		</view>
+	</view>
 </view>
 
 <view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
@@ -33,11 +33,11 @@
 
 				<navigator open-type="navigate" url="/pages/business/member/detail?no={{member.no}}" class="content">
 					<view class="text-pink" wx:if="{{member.gender==1}}">
-						【{{member.no}}】{{member.name}}  
+						【{{member.no}}】{{member.name}}
 						<view class="cu-tag round bg-red" style="margin-left:5px">{{member.leftnum}}</view>
 					</view>
 					<view class="text-black" wx:else="{{member.gender==0}}">
-						【{{member.no}}】{{member.name}}  
+						【{{member.no}}】{{member.name}}
 						<view class="cu-tag round bg-red" style="margin-left:5px">{{member.leftnum}}</view>
 					</view>
 					<view class="text-black text-sm">

@@ -11,7 +11,8 @@ Page({
     phone: null,
     genderSwitch: true,
     leftnum: 0,
-    no: null
+    no: null,
+    remark: ''
   },
   pageBack() {
     wx.reLaunch({
@@ -107,6 +108,7 @@ Page({
     member.set('name', name);
     member.set('phone', phone);
     member.set('no', Number(no));
+    member.set('remark',this.data.remark);
     if (this.data.genderSwitch) {
       member.set('gender', 0);
     } else {

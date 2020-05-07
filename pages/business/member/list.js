@@ -132,12 +132,11 @@ Page({
       order.set('name', member.get('name'));
       order.set('phone', member.get('phone'));
       order.set('type', 1);
+      order.set('leftnum',member.get('leftnum')-1)
       order.set('no', member.get('no'));
       // 将对象保存到云端
       order.save().then((order) => {
         // 成功保存之后，执行其他逻辑
-        console.log(member);
-        console.log('order save.. ' + member.id);
         const memberUpdate = AV.Object.createWithoutData('Member', member.id);
 
         // 用户剩余次数减1

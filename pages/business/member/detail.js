@@ -7,7 +7,10 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     member: {},
-    records: []
+    records: [],
+    rechargeNum: 0,
+    rechargeRemark: '',
+    rechargeMemberShow: ''
   },
   pageBack() {
     wx.reLaunch({
@@ -69,11 +72,12 @@ Page({
     member.set('gender', this.data.member.gender);
     member.set('no', Number(this.data.member.no));
     member.set('leftnum', Number(this.data.member.leftnum));
+    member.set('remark', this.data.member.remark);
     member.save().then((member) => {
       wx.showToast({
         title: '更新成功',
         icon: 'success',
-        success: function(){
+        success: function () {
           wx.redirectTo({
             url: './list'
           })
@@ -82,8 +86,78 @@ Page({
     }, (error) => {
       console.log(error);
       wx.showToast({
-        title: '更新失败：'+error.code
+        title: '更新失败：' + error.code
       })
     });
+  },
+  rechargeMember() {
+    this.setData({
+      rechargeMemberShow: 'show'
+    });
+  },
+  rechargeMemberClose() {
+    this.setData({
+      rechargeMemberShow: '',
+      rechargeRemark: '',
+      rechargeNum: 0
+    });
+  },
+  rechargeMemberDeal(event) {
+    if (!this.data.rechargeNum || Number(this.data.rechargeNum) == 0) {
+      wx.showToast({
+        title: '填写充值次数',
+        icon: 'none'
+      })
+      return;
+    }
+
+    var memberNo = Number(event.currentTarget.dataset.memberNo);
+    new AV.Query('Member').equalTo('no', memberNo).first().then((member) => {
+
+      const Order = AV.Object.extend('Order');
+      const order = new Order();
+      order.set('content', this.data.rechargeRemark);
+      order.set('member', member);
+      order.set('name', member.get('name'));
+      order.set('phone', member.get('phone'));
+      order.set('type', 2);
+      order.set('rechargeNum', Number(this.data.rechargeNum));
+      order.set('no', member.get('no'));
+      // 将对象保存到云端
+      order.save().then((order) => {
+        // 成功保存之后，执行其他逻辑
+        member.set('leftnum', member.get('leftnum') + Number(this.data.rechargeNum));
+        member.save().then((member) => {
+          console.log(member);
+        }, (error) => {
+          wx.showToast({
+            title: '保存失败',
+            icon: 'none'
+          })
+          return;
+        });
+
+        // todo 通知用户
+        wx.showToast({
+          title: '保存成功',
+          icon: 'success',
+          success: function () {
+            wx.redirectTo({
+              url: './detail?no='+memberNo
+            })
+          }
+        })
+
+        this.rechargeMemberClose();
+
+      }, (error) => {
+        // 异常处理
+        console.error(error);
+        wx.showToast({
+          title: '保存失败',
+          icon: 'none'
+        })
+      });
+    })
   }
 })
