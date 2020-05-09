@@ -23,14 +23,19 @@
 
 	<view class="padding flex text-center text-grey bg-white shadow-warp" wx:if="{{member}}">
 		<view class="flex flex-sub flex-direction solid-right">
-			<view class="text-xxl text-orange">{{useCount}}</view>
-			<view class="margin-top-sm">
-				<text class="cuIcon-attentionfill"></text> 已用次数</view>
+				<view class="text-xxl text-orange">{{currentUseCount}}</view>
+				<view class="margin-top-sm">
+					<text class="cuIcon-cut"></text> 本次已用</view>
 		</view>
 		<view class="flex flex-sub flex-direction solid-right">
 			<view class="text-xxl text-blue">{{member.leftnum}}</view>
 			<view class="margin-top-sm">
-				<text class="cuIcon-favorfill"></text> 剩余次数</view>
+				<text class="cuIcon-servicefill"></text> 剩余次数</view>
+		</view>
+		<view class="flex flex-sub flex-direction solid-right">
+			<view class="text-xxl text-orange">{{useCount}}</view>
+			<view class="margin-top-sm">
+				<text class="cuIcon-rankfill"></text> 累计已用</view>
 		</view>
 	</view>
 

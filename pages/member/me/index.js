@@ -10,7 +10,8 @@ Component({
     // canIUse: wx.canIUse('button.open-type.getUserInfo'),
     useCount: 0,
     leftCount: 0,
-    member: null
+    member: null,
+    currentUseCount: 0
   },
   attached() {
     console.log('onReady');
@@ -20,7 +21,7 @@ Component({
     })
     this.init();
   },
-  ready(){
+  ready() {
     wx.hideLoading()
   },
   methods: {
@@ -46,21 +47,43 @@ Component({
       query.first().then((member) => {
         console.log(member);
         if (member) {
-          console.log(member);
           let memberJson = util.jsonify(member);
-          console.log(memberJson);
           memberJson.createdAt = util.formatTime(new Date(memberJson.createdAt));
           that.setData({
             member: memberJson
           });
 
-          const query = new AV.Query('Order');
+          // 累计使用次数
+          let query = new AV.Query('Order');
           query.equalTo('no', member.get('no'));
+          query.equalTo('type', 1);
           query.count().then((count) => {
-            console.log(count);
+            that.data.useCount = count;
             that.setData({
               useCount: count
             });
+          });
+
+          // 查询最近充值记录 查询本地使用次数
+          query = new AV.Query('Order');
+          query.equalTo('type', 2);
+          query.descending('createdAt');
+          query.first().then((order) => {
+            if (!order) {
+              that.setData({
+                currentUseCount: that.data.useCount
+              });
+            } else {
+              query = new AV.Query('Order');
+              query.equalTo('no', member.get('no'));
+              query.equalTo('type', 1);
+              query.greaterThan('createdAt', order.createdAt);
+              query.count().then((count) => {
+                that.setData({
+                  currentUseCount: count
+                });
+              });
+            }
           });
         }
       });
