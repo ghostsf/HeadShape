@@ -10,8 +10,8 @@
 			<view class="content">
 				<view class="cu-capsule radius">
 					<view class="cu-tag bg-cyan" wx:if="{{record.type==0}}">普通消费</view>
-					<view class="cu-tag bg-cyan" wx:elif="{{record.type==1}}">会员卡消费</view>
-					<view class="cu-tag bg-cyan" wx:else="{{record.type==2}}">会员卡充值</view>
+					<view class="cu-tag bg-blue" wx:elif="{{record.type==1}}">会员卡消费</view>
+					<view class="cu-tag bg-orange" wx:else="{{record.type==2}}">会员卡充值</view>
 					<view class="cu-tag line-cyan">{{record.createdAt}}</view>
 				</view>
 				<view class="margin-top">
