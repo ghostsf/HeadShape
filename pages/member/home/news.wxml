@@ -8,6 +8,9 @@
 <view class='margin-xl bg-white padding-xl radius shadow-lg'>
 	<view class='text-center margin-bottom text-lg  text-grey'>{{news.title}}</view>
 	<view class='text-content'>
+		<view class="margin-top-sm" wx:for="{{news.url}}" wx:key="index">
+			<image src="{{item}}" mode="widthFix"></image>
+		</view>
 		<view class="margin-top-sm" wx:for="{{news.content}}" wx:key="index">{{item}}</view>
 	</view>
 

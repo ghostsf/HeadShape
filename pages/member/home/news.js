@@ -15,9 +15,12 @@ Page({
     const id = Number(options.id);
     query.equalTo('id', id);
     query.first().then((news) => {
+      console.log(news);
       let newsJson = util.jsonify(news);
       newsJson.createdAt = util.formatTime(new Date(newsJson.createdAt));
       newsJson.content = newsJson.content.split(/[(\r\n)\r\n]+/);
+      newsJson.url  = newsJson.url.split(',');
+      console.log(newsJson);
       that.setData({
         news: newsJson
       });

@@ -22,9 +22,11 @@ Component({
     const query = new AV.Query('News');
     query.ascending('id');
     query.find().then((news) => {
+      console.log(news);
       var newsDataJson = util.jsonify(news);
       newsDataJson.map(function (news) {
         news.createdAt = util.formatTime(new Date(news.createdAt));
+        news.url = news.url.split(',')[0];
         return news;
       });
       const posterJson = newsDataJson.filter(function (news) {
@@ -33,6 +35,7 @@ Component({
       const newsJson = newsDataJson.filter(function (news) {
         return news.type == 'news';
       });
+      console.log(newsJson);
       that.setData({
         poster: posterJson,
         news: newsJson
