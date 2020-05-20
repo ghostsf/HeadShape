@@ -103,6 +103,42 @@ Page({
           })
         }
       })
+
+      const data = {
+        touser: member.get('openid'),
+        template_id: 'vU7W37FrSe--yEFd7XjYhuREW2Oi--VXOg_4XqCfybg',
+        page: "pages/welcome/welcome",
+        data: {
+          "name1": {
+            "value": member.get('name'),
+          },
+          "phone_number2": {
+            "value": member.get('phone'),
+          },
+          "time3": {
+            "value": util.formatTime(new Date())
+          },
+          "thing4": {
+            "value": '会员卡编号'+member.get('no')
+          }
+        }
+      };
+      AV.Cloud.run('sendNotice',data).then((data) => {
+        data.success = (result) => {
+          // 成功
+          console.log('sendNotice success');
+          console.log(result);
+        };
+        data.fail = ({ errMsg }) => {
+          // 错误
+          console.error(errMsg);
+        };
+        wx.requestPayment(data);
+      }).catch(error => {
+        // 错误处理
+        console.error(error);
+      })
+      
     }).catch(
       console.error
     );

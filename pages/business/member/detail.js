@@ -140,20 +140,17 @@ Page({
         // 通知用户
         const data = {
           touser: member.get('openid'),
-          template_id: 'vU7W37FrSe--yEFd7XjYhuREW2Oi--VXOg_4XqCfybg',
+          template_id: 'gcm5blboAoAEBicRiojCPlLqnHCxOB1SD0ALKB9No1M',
           page: "pages/welcome/welcome",
           data: {
-            "name1": {
-              "value": member.get('name'),
+            "thing1": {
+              "value": '会员卡编号'+member.get('no'),
             },
-            "phone_number2": {
-              "value": member.get('phone'),
+            "thing2": {
+              "value": '充值'+this.data.rechargeNum+'次，剩余'+member.get('leftnum')+'次',
             },
-            "time3": {
+            "date3": {
               "value": util.formatTime(new Date())
-            },
-            "thing4": {
-              "value": '会员卡编号'+member.get('no')
             }
           }
         };

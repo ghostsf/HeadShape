@@ -161,7 +161,7 @@ Page({
               "value": '会员卡编号'+member.get('no'),
             },
             "thing2": {
-              "value": '会员卡剩余'+member.get('leftnum')+'次',
+              "value": '扣除1次，剩余'+member.get('leftnum')+'次',
             },
             "date3": {
               "value": util.formatTime(new Date())
