@@ -152,6 +152,38 @@ Page({
         });
 
         // 通知用户被扣一次
+        const data = {
+          touser: member.get('openid'),
+          template_id: 'gcm5blboAoAEBicRiojCPlLqnHCxOB1SD0ALKB9No1M',
+          page: "pages/welcome/welcome",
+          data: {
+            "thing1": {
+              "value": '会员卡编号'+member.get('no'),
+            },
+            "thing2": {
+              "value": '会员卡剩余'+member.get('leftnum')+'次',
+            },
+            "date3": {
+              "value": util.formatTime(new Date())
+            }
+          }
+        };
+        AV.Cloud.run('sendNotice',data).then((data) => {
+          data.success = (result) => {
+            // 成功
+            console.log('sendNotice success');
+            console.log(result);
+          };
+          data.fail = ({ errMsg }) => {
+            // 错误
+            console.error(errMsg);
+          };
+          wx.requestPayment(data);
+        }).catch(error => {
+          // 错误处理
+          console.error(error);
+        })
+
         wx.showToast({
           title: '保存成功',
           icon: 'success',
