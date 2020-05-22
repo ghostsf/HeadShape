@@ -27,7 +27,7 @@ const isPlainObject = target =>
   target &&
   target.toString() == '[object Object]' &&
   Object.getPrototypeOf(target) == Object.prototype;
-  
+
 const _jsonify = target => {
   if (target && typeof target.toJSON === 'function') return target.toJSON();
   if (Array.isArray(target)) return target.map(_jsonify);
@@ -35,19 +35,42 @@ const _jsonify = target => {
 };
 
 const jsonify = target =>
-  isPlainObject(target)
-    ? Object.keys(target).reduce(
-      (result, key) => ({
-        ...result,
-        [key]: _jsonify(target[key])
-      }),
-      {}
-    )
-    : _jsonify(target);
+  isPlainObject(target) ?
+  Object.keys(target).reduce(
+    (result, key) => ({
+      ...result,
+      [key]: _jsonify(target[key])
+    }), {}
+  ) :
+  _jsonify(target);
+
+const wxMsgReq = () => {
+  // 请求消息订阅的权限
+  wx.requestSubscribeMessage({
+    tmplIds: ['gcm5blboAoAEBicRiojCPlLqnHCxOB1SD0ALKB9No1M'],
+    success(res) {
+      if (res['gcm5blboAoAEBicRiojCPlLqnHCxOB1SD0ALKB9No1M'] != 'accept') {
+        wx.showModal({
+          title: '温馨提示',
+          content: '请允许我们向您发送订阅消息，这样才能及时收到通知',
+          showCancel: false,
+          success: function (res) {
+            wx.openSetting({
+              success: (res) => {
+                console.log(res);
+              },
+            })
+          }
+        })
+      }
+    }
+  })
+}
 
 module.exports = {
   formatTime: formatTime,
   isPhoneAvailable: isPhoneAvailable,
   jsonify: jsonify,
-  isPlainObject: isPlainObject
+  isPlainObject: isPlainObject,
+  wxMsgReq: wxMsgReq
 }

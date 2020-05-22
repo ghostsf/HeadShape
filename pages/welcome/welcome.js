@@ -1,6 +1,7 @@
 // pages/welcome/welcome.js
 const app = getApp();
 const AV = app.require('libs/av-weapp-min.js');
+const util = app.require('utils/util.js');
 
 Page({
 
@@ -23,6 +24,7 @@ Page({
   go: function () {
     const that = this;
     const user = AV.User.current();
+
     if (!user) {
       AV.User.loginWithWeapp().then((user) => {
         that.autoJump();
@@ -36,6 +38,9 @@ Page({
    * 判断用户自动跳转
    */
   autoJump: function () {
+    // 请求消息订阅的权限
+    util.wxMsgReq();
+
     const that = this;
     // todo 这边第一次登陆 没有获取到user的bug
     const user = AV.User.current();

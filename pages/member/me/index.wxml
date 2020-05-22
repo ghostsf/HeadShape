@@ -40,17 +40,13 @@
 	</view>
 
 	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
-		<view class="cu-item arrow" wx:if="{{member}}">
-			<navigator class="content" url="/pages/member/me/detail?no={{member.no}}" hover-class="none">
+		<view class="cu-item arrow" wx:if="{{member}}" data-member-no="{{member.no}}" bindtap="goToDetail">
 				<text class="cuIcon-myfill text-blue"></text>
 				<text class="text-grey">会员详情</text>
-			</navigator>
 		</view>
-		<view class="cu-item arrow" wx:if="{{member}}">
-			<navigator class="content" url="/pages/member/me/record?no={{member.no}}" hover-class="none">
+		<view class="cu-item arrow" wx:if="{{member}}" data-member-no="{{member.no}}" bindtap="goToRecord">
 				<text class="cuIcon-list text-green"></text>
 				<text class="text-grey">消费记录</text>
-			</navigator>
 		</view>
 		<view class="cu-item arrow">
 			<view class="content" bindtap="showQrcode">

@@ -123,6 +123,18 @@ Component({
         current: 'https://cdn.ghostsf.com/me-wx.jpeg' // 当前显示图片的http链接      
       })
     },
+    goToDetail() {
+      wx.navigateTo({
+        url: './me/detail?no=' + event.currentTarget.dataset.memberNo
+      })
+      util.wxMsgReq();
+    },
+    goToRecord() {
+      wx.navigateTo({
+        url: './me/record?no=' + event.currentTarget.dataset.memberNo
+      })
+      util.wxMsgReq();
+    }
   }
 
 })
