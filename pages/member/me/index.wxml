@@ -45,8 +45,12 @@
 				<text class="text-grey">会员详情</text>
 		</view>
 		<view class="cu-item arrow" wx:if="{{member}}" data-member-no="{{member.no}}" bindtap="goToRecord">
-				<text class="cuIcon-list text-green"></text>
+				<text class="cuIcon-list text-orange"></text>
 				<text class="text-grey">消费记录</text>
+		</view>
+		<view class="cu-item arrow" wx:if="{{member}}" bindtap="goToSubscribe">
+				<text class="cuIcon-roundcheck text-green"></text>
+				<text class="text-grey">订阅消息</text>
 		</view>
 		<view class="cu-item arrow">
 			<view class="content" bindtap="showQrcode">

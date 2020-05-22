@@ -134,6 +134,9 @@ Component({
         url: './me/record?no=' + event.currentTarget.dataset.memberNo
       })
       util.wxMsgReq();
+    },
+    goToSubscribe(){
+      util.wxMsgReq();
     }
   }
 
