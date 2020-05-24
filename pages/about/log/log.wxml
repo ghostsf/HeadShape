@@ -38,5 +38,17 @@
       </view>
     </view>   
   </view>
+
+  <view class="cu-item text-green">
+    <view class="bg-gradual-green content shadow">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-white text-green">v1.2.1</view>
+        <view class="cu-tag line-white">2020/05/24</view>
+      </view>
+      <view class="margin-top-sm text-content">
+        <view>1.会员登录可能存在的过期问题完善</view>
+      </view>
+    </view>   
+  </view>
   
 </view>
