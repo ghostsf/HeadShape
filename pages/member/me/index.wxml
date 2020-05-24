@@ -23,9 +23,9 @@
 
 	<view class="padding flex text-center text-grey bg-white shadow-warp" wx:if="{{member}}">
 		<view class="flex flex-sub flex-direction solid-right">
-				<view class="text-xxl text-orange">{{currentUseCount}}</view>
-				<view class="margin-top-sm">
-					<text class="cuIcon-cut"></text> 本次已用</view>
+			<view class="text-xxl text-orange">{{currentUseCount}}</view>
+			<view class="margin-top-sm">
+				<text class="cuIcon-cut"></text> 本次已用</view>
 		</view>
 		<view class="flex flex-sub flex-direction solid-right">
 			<view class="text-xxl text-blue">{{member.leftnum}}</view>
@@ -40,17 +40,23 @@
 	</view>
 
 	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
-		<view class="cu-item arrow" wx:if="{{member}}" data-member-no="{{member.no}}" bindtap="goToDetail">
+		<view class="cu-item arrow" wx:if="{{member}}">
+			<view class="content" data-member-no="{{member.no}}" bindtap="goToDetail">
 				<text class="cuIcon-myfill text-blue"></text>
 				<text class="text-grey">会员详情</text>
+			</view>
 		</view>
-		<view class="cu-item arrow" wx:if="{{member}}" data-member-no="{{member.no}}" bindtap="goToRecord">
+		<view class="cu-item arrow" wx:if="{{member}}">
+			<view class="content" data-member-no="{{member.no}}" bindtap="goToRecord">
 				<text class="cuIcon-list text-orange"></text>
 				<text class="text-grey">消费记录</text>
+			</view>
 		</view>
-		<view class="cu-item arrow" wx:if="{{member}}" bindtap="goToSubscribe">
+		<view class="cu-item arrow" wx:if="{{member}}">
+			<view class="content" bindtap="goToSubscribe">
 				<text class="cuIcon-roundcheck text-green"></text>
 				<text class="text-grey">订阅消息</text>
+			</view>
 		</view>
 		<view class="cu-item arrow">
 			<view class="content" bindtap="showQrcode">

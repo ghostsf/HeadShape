@@ -25,73 +25,61 @@ Component({
     wx.hideLoading()
   },
   methods: {
-    // CopyLink(e) {
-    //   wx.setClipboardData({
-    //     data: e.currentTarget.dataset.link,
-    //     success: res => {
-    //       wx.showToast({
-    //         title: '已复制',
-    //         duration: 1000,
-    //       })
-    //     }
-    //   })
-    // },
     init() {
-      let that = this;
-
-      const user = AV.User.current();
-      console.log(user);
-      var openid = user.attributes.authData.lc_weapp.openid;
-
-      const query = new AV.Query('Member').equalTo('openid', openid);
-      query.first().then((member) => {
-        console.log(member);
-        if (member) {
-          let memberJson = util.jsonify(member);
-          memberJson.createdAt = util.formatTime(new Date(memberJson.createdAt));
-          that.setData({
-            member: memberJson
-          });
-
-          // 累计使用次数
-          let query = new AV.Query('Order');
-          query.equalTo('no', member.get('no'));
-          query.equalTo('type', 1);
-          query.count().then((count) => {
-            that.data.useCount = count;
+      const that = this;
+      this.login().then((user) => {
+        console.log(user);
+        var openid = user.attributes.authData.lc_weapp.openid;
+        const query = new AV.Query('Member').equalTo('openid', openid);
+        query.first().then((member) => {
+          console.log(member);
+          if (member) {
+            let memberJson = util.jsonify(member);
+            memberJson.createdAt = util.formatTime(new Date(memberJson.createdAt));
             that.setData({
-              useCount: count
+              member: memberJson
             });
-          });
 
-          // 查询最近充值记录 查询本地使用次数
-          query = new AV.Query('Order');
-          query.equalTo('type', 2);
-          query.descending('createdAt');
-          query.first().then((order) => {
-            if (!order) {
+            // 累计使用次数
+            let query = new AV.Query('Order');
+            query.equalTo('no', member.get('no'));
+            query.equalTo('type', 1);
+            query.count().then((count) => {
+              that.data.useCount = count;
               that.setData({
-                currentUseCount: that.data.useCount
+                useCount: count
               });
-            } else {
-              query = new AV.Query('Order');
-              query.equalTo('no', member.get('no'));
-              query.equalTo('type', 1);
-              query.greaterThan('createdAt', order.createdAt);
-              query.count().then((count) => {
+            });
+
+            // 查询最近充值记录 查询本地使用次数
+            query = new AV.Query('Order');
+            query.equalTo('type', 2);
+            query.descending('createdAt');
+            query.first().then((order) => {
+              if (!order) {
                 that.setData({
-                  currentUseCount: count
+                  currentUseCount: that.data.useCount
                 });
-              });
-            }
-          });
-        }
+              } else {
+                query = new AV.Query('Order');
+                query.equalTo('no', member.get('no'));
+                query.equalTo('type', 1);
+                query.greaterThan('createdAt', order.createdAt);
+                query.count().then((count) => {
+                  that.setData({
+                    currentUseCount: count
+                  });
+                });
+              }
+            });
+          }
+        });
       });
     },
-    // login: function () {
-    //   return AV.Promise.resolve(AV.User.current()).then(user =>
-    //     user ? user : AV.User.loginWithWeapp());
-    // },
+    login: function () {
+      return AV.Promise.resolve(AV.User.current()).then(user => 
+        user ? user : AV.User.loginWithWeapp());
+    },
     showModal(e) {
       this.setData({
         modalName: e.currentTarget.dataset.target
@@ -102,16 +90,6 @@ Component({
         modalName: null
       })
     },
-    // showQrcode() {
-    //   wx.previewImage({
-    //     urls: ['https://image.weilanwl.com/color2.0/zanCode.jpg'],
-    //     current: 'https://image.weilanwl.com/color2.0/zanCode.jpg' // 当前显示图片的http链接      
-    //   })
-    // },
-    // bindGetUserInfo(res){
-    //   console.log(res);
-    //   const wxInfo = res.detail.userInfo;
-    // }
     bindShow() {
       wx.navigateTo({
         url: './me/bind'
@@ -123,19 +101,19 @@ Component({
         current: 'https://cdn.ghostsf.com/me-wx.jpeg' // 当前显示图片的http链接      
       })
     },
-    goToDetail() {
+    goToDetail(event) {
       wx.navigateTo({
         url: './me/detail?no=' + event.currentTarget.dataset.memberNo
       })
       util.wxMsgReq();
     },
-    goToRecord() {
+    goToRecord(event) {
       wx.navigateTo({
         url: './me/record?no=' + event.currentTarget.dataset.memberNo
       })
       util.wxMsgReq();
     },
-    goToSubscribe(){
+    goToSubscribe() {
       util.wxMsgReq();
     }
   }
