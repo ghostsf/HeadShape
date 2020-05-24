@@ -73,7 +73,8 @@ Page({
       var noCount = await query.count();
       if (noCount > 0) {
         wx.showToast({
-          title: '该编号已存在'
+          title: '该编号已存在',
+          icon: 'none'
         })
         return;
       }
@@ -94,7 +95,8 @@ Page({
     var phoneCount = await query.count();
     if (phoneCount > 0) {
       wx.showToast({
-        title: '该手机号已存在'
+        title: '该手机号已存在',
+        icon: 'none'
       })
       return;
     }

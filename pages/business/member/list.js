@@ -173,6 +173,9 @@ Page({
             // 成功
             console.log('sendNotice success');
             console.log(result);
+            // 减掉一次消息通知
+            member.set('msgCount',member.get('msgCount')-1);
+            member.save();
           };
           data.fail = ({ errMsg }) => {
             // 错误

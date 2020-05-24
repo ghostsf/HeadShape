@@ -11,7 +11,8 @@ Component({
     useCount: 0,
     leftCount: 0,
     member: null,
-    currentUseCount: 0
+    currentUseCount: 0,
+    msgCount: 0
   },
   attached() {
     console.log('onReady');
@@ -77,7 +78,7 @@ Component({
       });
     },
     login: function () {
-      return AV.Promise.resolve(AV.User.current()).then(user => 
+      return AV.Promise.resolve(AV.User.current()).then(user =>
         user ? user : AV.User.loginWithWeapp());
     },
     showModal(e) {
@@ -114,8 +115,45 @@ Component({
       util.wxMsgReq();
     },
     goToSubscribe() {
-      util.wxMsgReq();
+      // 请求消息订阅的权限
+      wx.requestSubscribeMessage({
+        tmplIds: ['gcm5blboAoAEBicRiojCPlLqnHCxOB1SD0ALKB9No1M'],
+        success(res) {
+          if (res['gcm5blboAoAEBicRiojCPlLqnHCxOB1SD0ALKB9No1M'] != 'accept') {
+            wx.showModal({
+              title: '温馨提示',
+              content: '请允许我们向您发送订阅消息，这样才能及时收到通知',
+              showCancel: false,
+              success: function (res) {
+                wx.openSetting({
+                  success: (res) => {
+                    console.log(res);
+                  },
+                });
+              }
+            });
+          } else {
+            // 订阅次数+1
+            var openid = AV.User.current().attributes.authData.lc_weapp.openid;
+            const query = new AV.Query('Member').equalTo('openid', openid);
+            query.first().then((member) => {
+              if (member) {
+                member.set('msgCount', member.get('msgCount') + 1);
+                member.save().then(()=>{
+                  wx.showToast({
+                    title: '订阅成功',
+                    icon: 'success'
+                  });
+                  wx.redirectTo({
+                    url: './index?PageCur=me'
+                  })
+                });
+              }
+            });
+          }
+        }
+      })
+
     }
   }
-
 })

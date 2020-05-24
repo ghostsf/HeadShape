@@ -1,3 +1,6 @@
+const app = getApp();
+const AV = app.require('libs/av-weapp-min.js');
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -44,7 +47,7 @@ const jsonify = target =>
   ) :
   _jsonify(target);
 
-const wxMsgReq = () => {
+const wxMsgReq = async (isShow=false) => {
   // 请求消息订阅的权限
   wx.requestSubscribeMessage({
     tmplIds: ['gcm5blboAoAEBicRiojCPlLqnHCxOB1SD0ALKB9No1M'],
@@ -59,9 +62,26 @@ const wxMsgReq = () => {
               success: (res) => {
                 console.log(res);
               },
-            })
+            });
           }
-        })
+        });
+      }
+      else {
+        // 订阅次数+1
+        var openid = AV.User.current().attributes.authData.lc_weapp.openid;
+        const query = new AV.Query('Member').equalTo('openid', openid);
+        query.first().then((member) => {
+          if (member) {
+            member.set('msgCount', member.get('msgCount') + 1);
+            member.save();
+          }
+        });
+        if (isShow) {
+          wx.showToast({
+            title: '订阅成功',
+            icon: 'success'
+          });
+        }
       }
     }
   })

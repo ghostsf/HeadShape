@@ -14,6 +14,7 @@ Component({
           wx.showToast({
             title: '已复制',
             duration: 1000,
+            icon: 'success'
           })
         }
       })

@@ -39,7 +39,7 @@ Page({
    */
   autoJump: function () {
     // 请求消息订阅的权限
-    util.wxMsgReq();
+    // util.wxMsgReq();
 
     const that = this;
     // todo 这边第一次登陆 没有获取到user的bug
