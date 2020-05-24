@@ -40,7 +40,7 @@
 		<view class="flex flex-sub flex-direction solid-right">
 			<view class="text-xxl text-orange">{{member.msgCount}}</view>
 			<view class="margin-top-sm">
-				<text class="cuIcon-rankfill"></text> 消息订阅</view>
+				<text class="cuIcon-roundcheck"></text> 消息订阅</view>
 		</view>
 	</view>
 

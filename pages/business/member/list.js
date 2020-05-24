@@ -132,7 +132,7 @@ Page({
       order.set('name', member.get('name'));
       order.set('phone', member.get('phone'));
       order.set('type', 1);
-      order.set('leftnum',member.get('leftnum')-1)
+      order.set('leftnum', member.get('leftnum') - 1)
       order.set('no', member.get('no'));
       // 将对象保存到云端
       order.save().then((order) => {
@@ -158,30 +158,26 @@ Page({
           page: "pages/welcome/welcome",
           data: {
             "thing1": {
-              "value": '会员卡编号'+member.get('no'),
+              "value": '会员卡编号' + member.get('no'),
             },
             "thing2": {
-              "value": '扣除1次，剩余'+member.get('leftnum')+'次',
+              "value": '扣除1次，剩余' + member.get('leftnum') + '次',
             },
             "date3": {
               "value": util.formatTime(new Date())
             }
           }
         };
-        AV.Cloud.run('sendNotice',data).then((data) => {
-          data.success = (result) => {
+        AV.Cloud.run('sendNotice', data).then((data) => {
+          if (data.errcode == 0) {
             // 成功
             console.log('sendNotice success');
-            console.log(result);
             // 减掉一次消息通知
-            member.set('msgCount',member.get('msgCount')-1);
+            member.set('msgCount', member.get('msgCount') - 1);
             member.save();
-          };
-          data.fail = ({ errMsg }) => {
-            // 错误
-            console.error(errMsg);
-          };
-          wx.requestPayment(data);
+          }else{
+            console.error(data);
+          }
         }).catch(error => {
           // 错误处理
           console.error(error);

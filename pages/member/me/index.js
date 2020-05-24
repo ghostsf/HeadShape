@@ -106,13 +106,13 @@ Component({
       wx.navigateTo({
         url: './me/detail?no=' + event.currentTarget.dataset.memberNo
       })
-      util.wxMsgReq();
+      // util.wxMsgReq();
     },
     goToRecord(event) {
       wx.navigateTo({
         url: './me/record?no=' + event.currentTarget.dataset.memberNo
       })
-      util.wxMsgReq();
+      // util.wxMsgReq();
     },
     goToSubscribe() {
       // 请求消息订阅的权限
